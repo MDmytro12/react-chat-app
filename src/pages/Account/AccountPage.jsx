@@ -25,8 +25,6 @@ const AccountPage = ({dispatch , auth}) => {
     const [currentDialog , setCurrentDialog] = useState({})
 
     useEffect(() => {
-
-        titleFilter('Account page!')
         
         async function fetchDada(){
             setLoader(true)
@@ -97,6 +95,8 @@ const AccountPage = ({dispatch , auth}) => {
     return (
         <>
             <div className="account">
+
+                {titleFilter('Account page!')}
 
                 <ImExit className='icon_exit' onClick={onExitHandler} />
                 

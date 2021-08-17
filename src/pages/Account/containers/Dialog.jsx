@@ -10,15 +10,20 @@ const ENDPOINT = 'http://localhost:4000'
 
 const socket = socketClientIO(ENDPOINT)
 
-const Dialog = ({ currentDialogItem , setCurrentDialog }) => {
+const Dialog = ({ currentDialogItem }) => {
 
     const dialogWindow = useRef(null)
 
     const [loader , setLoader] = useState(false)
     const [messages , setMessages] = useState([])
+    const [typing , setTyping] = useState(false)
 
     socket.on('dialog_message' , (mes) => {
       setMessages(mes)
+    })
+
+    socket.on('typing' , (value) => {
+      setTyping(value)
     })
 
     useEffect(() => {
@@ -39,6 +44,10 @@ const Dialog = ({ currentDialogItem , setCurrentDialog }) => {
         isReadedBy : [JSON.parse(localStorage.getItem('currentUser')).email] ,
         sended_at : Date.now()
       })
+    }
+
+    const onTypingHandler = (value) => {
+        socket.emit('typing' , value)
     }
 
     return(
@@ -63,10 +72,10 @@ const Dialog = ({ currentDialogItem , setCurrentDialog }) => {
               }
               {
                 !loader   && 
-                <DialogMain dialogWindow={dialogWindow} partnerName={currentDialogItem.name} messages={messages}/>
+                <DialogMain  dialogWindow={dialogWindow} partnerName={currentDialogItem.name} messages={messages}/>
               }
 
-              <DialogSender currentDialog={currentDialogItem} onSenderMessage={onSenderMessage} />
+              <DialogSender  typing={typing} onTypingHandler={onTypingHandler} currentDialog={currentDialogItem} onSenderMessage={onSenderMessage} />
           </div>
         </>
     )

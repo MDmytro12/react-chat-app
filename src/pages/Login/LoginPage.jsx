@@ -12,10 +12,11 @@ import titleFilter from '../../utils/title.utils';
 
 const LoginPage = () => {
 
-    titleFilter('Login Page!')
+    
 
     return(
         <>
+            { titleFilter('Login Page!') }
             <div className="login">
                 <div className="login_title">
                     <p>chat</p>

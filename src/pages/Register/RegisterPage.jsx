@@ -10,6 +10,8 @@ import {RegisterForm , RegisterSuccess , RegisterFailed} from './components'
 
 import './Register.css'
 
+import titleFilter from '../../utils/title.utils'
+
 const RegisterPage = ( { setTitle , register}) => {
 
     const [content , setContent] = useState('form') 
@@ -20,7 +22,8 @@ const RegisterPage = ( { setTitle , register}) => {
     }
 
     return (
-        <>
+        <>  
+            { titleFilter('Register Page!') }
             <div className="register">
                 <div className="login_title">
                     <p className='register_title'>registration</p>

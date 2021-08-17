@@ -15,10 +15,10 @@ const NoMatchPage = () => {
         history.push('/login')
     } , 10000)
 
-    titleFilter('404')
+    
 
     return(
-        <>  
+        <>  { titleFilter('404') }
             <div className="nomatch">
                 <p>Path <span>" {params.params[0]} "</span> doesn`t  exist! </p>
                 <BsQuestionSquare  className='nomatch_icon'/>

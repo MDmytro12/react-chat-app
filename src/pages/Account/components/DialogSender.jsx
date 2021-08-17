@@ -3,10 +3,9 @@ import React , { useState , useEffect } from 'react'
 import {RiMailSendLine} from 'react-icons/ri'
 import {FaPen} from 'react-icons/fa'
 
-const DialogSender= ({onSenderMessage , currentDialog}) => {
+const DialogSender= ({onSenderMessage  , typing , currentDialog , onTypingHandler }) => {
 
     const [message , setMessage] = useState('')
-    const [typing , setTyping] = useState(false)
 
     useEffect( () => {
         setMessage('')
@@ -14,6 +13,14 @@ const DialogSender= ({onSenderMessage , currentDialog}) => {
 
     const onMessageHandler = (e) => {
         setMessage(e.target.value)
+    }
+
+    const onFocusHandler = (e) => {
+        onTypingHandler(true)
+    } 
+    
+    const onBlurHandler = (e) => {
+        onTypingHandler(false)
     }
 
     return(
@@ -31,7 +38,7 @@ const DialogSender= ({onSenderMessage , currentDialog}) => {
                     onSenderMessage(message)
                     setMessage('')
                 }}>
-                    <textarea value={message} onChange={onMessageHandler} className="dialog_sender_ta" placeholder="Enter message . . ."></textarea>
+                    <textarea onFocus={onFocusHandler} onBlur={onBlurHandler} value={message} onChange={onMessageHandler} className="dialog_sender_ta" placeholder="Enter message . . ."></textarea>
                     <button className="dialog_sender_bs" type='submit'>
                         <RiMailSendLine />
                     </button>
