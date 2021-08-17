@@ -8,8 +8,6 @@ import { setAuth } from './redux/actions/auth'
 
 const App = ({dispatch , auth}) => {
 
-  
-
     useEffect(() => {
         const assecc = window.localStorage.getItem('currentUser')
         if(assecc){

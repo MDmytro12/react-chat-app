@@ -26,12 +26,12 @@ const Message = ({ message , partnerName}) => {
                     <div className={classNames( "message_date" , { 'is-me' : isMe } )}>
                         {dateFilter(new Date(message.sended_at))}
                     </div>
-                    {               
+                    {/* {               
                         !message.isReaded && <FaRegEyeSlash className={classNames("saw_icon" , { 'is-me' : isMe })} />
                     }
                     {
                         message.isReaded && <FaRegEye className={classNames("saw_icon" , { 'is-me' : isMe })} />
-                    }
+                    } */}
                 </div>
 
             </div>

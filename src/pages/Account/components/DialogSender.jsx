@@ -29,7 +29,7 @@ const DialogSender= ({onSenderMessage , currentDialog}) => {
                 <form onSubmit={(e) => {
                     e.preventDefault()
                     onSenderMessage(message)
-                    setMessage('    ')
+                    setMessage('')
                 }}>
                     <textarea value={message} onChange={onMessageHandler} className="dialog_sender_ta" placeholder="Enter message . . ."></textarea>
                     <button className="dialog_sender_bs" type='submit'>

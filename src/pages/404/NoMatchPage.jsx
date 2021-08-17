@@ -1,12 +1,21 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { useRouteMatch } from 'react-router'
 import {BsQuestionSquare} from 'react-icons/bs'
+
+import { useHistory } from 'react-router'
+import titleFilter from '../../utils/title.utils'
 
 import './404.css'
 
 const NoMatchPage = () => {
     const params = useRouteMatch()
+    const history = useHistory()
+
+    setTimeout(() => {
+        history.push('/login')
+    } , 10000)
+
+    titleFilter('404')
 
     return(
         <>  

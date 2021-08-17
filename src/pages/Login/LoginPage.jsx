@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types'
 
 import {LoginForm} from './components';
 
@@ -9,7 +8,11 @@ import smallLogoSvg from '../../assets/img/logo_small.svg'
 
 import './Login.css'
 
+import titleFilter from '../../utils/title.utils';
+
 const LoginPage = () => {
+
+    titleFilter('Login Page!')
 
     return(
         <>

@@ -4,29 +4,32 @@ import {DialogHeader , DialogMain , DialogSender} from '../components'
 
 import Loader from 'react-loader-spinner'
 import socketClientIO from 'socket.io-client'
+import { useRef } from 'react'
 
 const ENDPOINT = 'http://localhost:4000'
 
 const socket = socketClientIO(ENDPOINT)
 
-const Dialog = ({ currentDialogItem}) => {
+const Dialog = ({ currentDialogItem , setCurrentDialog }) => {
+
+    const dialogWindow = useRef(null)
 
     const [loader , setLoader] = useState(false)
     const [messages , setMessages] = useState([])
 
-     socket.on('dialog_message' , async (data) => {
+    socket.on('dialog_message' , (mes) => {
+      setMessages(mes)
+    })
+
+    useEffect(() => {
+      async function getMessages(){
+        const data = await fetch( 'http://localhost:4000/acc/getmbdi' , {method : "POST" , headers : {"Content-Type" : "application/json"} , body : JSON.stringify( { dialogId : currentDialogItem.dialogId }  ) } )
+              .then( res => res.json())
         setMessages(data)
-      })
+      } 
+      getMessages()
 
-    useEffect( () => {
-      socket.emit('start_getm' , {dialogId : currentDialogItem.dialogId})
-      socket.on('message_from_server' , (data) => {
-        setMessages(data)
-      })
-
-     
-
-    } ,[messages])
+      } , [currentDialogItem ]) 
 
     const onSenderMessage = (message) => {
       socket.emit('dialog_message' , {
@@ -60,7 +63,7 @@ const Dialog = ({ currentDialogItem}) => {
               }
               {
                 !loader   && 
-                <DialogMain partnerName={currentDialogItem.name} messages={messages}/>
+                <DialogMain dialogWindow={dialogWindow} partnerName={currentDialogItem.name} messages={messages}/>
               }
 
               <DialogSender currentDialog={currentDialogItem} onSenderMessage={onSenderMessage} />

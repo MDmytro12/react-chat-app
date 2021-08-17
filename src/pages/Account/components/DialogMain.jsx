@@ -6,10 +6,13 @@ import { Message } from './'
 import {AiOutlineComment} from 'react-icons/ai'
 import classNames from 'classnames'
 
-const DialogMain = ({messages , partnerName}) => {
+const DialogMain = ({messages , partnerName , dialogWindow}) => {
+    useEffect(() => {
+        dialogWindow.current.scrollTo( 0 , dialogWindow.current.scrollHeight )
+    } , [messages])
     return(
         <>
-            <div className="dialog_dialog">
+            <div ref={dialogWindow} className="dialog_dialog">
                 <div className={classNames('dialog_messages' , { 'dialogs_messages--empty' :  !messages.length  })}>
                     {
                         messages.length !== 0 &&

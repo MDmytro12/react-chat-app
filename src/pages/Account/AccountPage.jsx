@@ -13,8 +13,9 @@ import { useHistory } from 'react-router'
 import {connect} from 'react-redux'
 import { setAuth } from '../../redux/actions/auth'
 import { BiMessageSquareX } from 'react-icons/bi'
+import titleFilter from '../../utils/title.utils'
 
-const AccountPage = ({dispatch}) => {
+const AccountPage = ({dispatch , auth}) => {
 
     const history = useHistory()
 
@@ -24,6 +25,8 @@ const AccountPage = ({dispatch}) => {
     const [currentDialog , setCurrentDialog] = useState({})
 
     useEffect(() => {
+
+        titleFilter('Account page!')
         
         async function fetchDada(){
             setLoader(true)
@@ -59,15 +62,15 @@ const AccountPage = ({dispatch}) => {
             setLoader(false)
         }   
         fetchDada()
-    } , [])
+    } , [auth])
 
 
     const onExitHandler = async () => {
         await fetch('http://localhost:4000/acc/exit' , {method:"POST" , headers: {"Content-Type" : "application/json"} , body : JSON.stringify( {email : JSON.parse(localStorage.getItem('currentUser') ).email})})
-            
+        dispatch(setAuth(false))    
         window.localStorage.removeItem('currentUser')
         history.push('/login')
-        dispatch(setAuth(false))
+        
     }
 
 
@@ -121,7 +124,7 @@ const AccountPage = ({dispatch}) => {
                         </div>
 
                         <div className="account_main">
-                            <Dialog currentDialogItem={currentDialog}/>
+                            <Dialog setCurrentDialog={setCurrentDialog} currentDialogItem={currentDialog}/>
                         </div>
                     </>
                     
@@ -132,4 +135,17 @@ const AccountPage = ({dispatch}) => {
     )
 }
 
-export default connect()(AccountPage);
+AccountPage.propTypes = {
+    dispatch : PropTypes.func ,
+    auth : PropTypes.bool
+}
+
+const mapStateToProps = (state) => {
+    return {
+        auth : state.authReducer.auth
+    }
+}
+
+export default connect(
+    mapStateToProps
+)(AccountPage);
