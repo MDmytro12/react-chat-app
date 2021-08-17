@@ -1,0 +1,26 @@
+.nomatch{
+    height: 100vh;
+
+    margin-top: -200px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 90px;
+
+    color: rgba( 0 , 0 , 0 , .45);
+
+    position: relative;
+}
+
+.nomatch span{
+    color: black;
+}
+
+.nomatch_icon{
+    position: absolute;
+
+    font-size: 250px;
+
+    bottom: 10%;
+}

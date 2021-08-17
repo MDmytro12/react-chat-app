@@ -1,0 +1,100 @@
+/* Register form */
+
+.register{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 180px;
+}
+
+.register .register_title{
+    transform: rotate(5.3deg);
+
+    letter-spacing: .05em;
+    font-size: 65px;
+}
+
+.register hr{
+    width: 350px;
+
+    right: 10%;
+}
+
+.register .register_title_icon_1{
+    right: 86%;
+}
+
+.register .register_title_icon_2{
+    right: 77%;
+}
+
+/* Register form */
+
+.register form{
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding-top: 40px;
+}
+
+.register button{
+    width: 430px;
+
+    background: rgba(238, 218, 218, 0.49);
+
+    border: none;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    font-weight: 600;
+    font-size: 18px;
+    color: rgba( 0 ,0 , 0  ,.45);
+
+    box-shadow: 5px 4px 4px rgba( 0 ,0 , 0 , .25);
+
+    border-radius: 30px;
+
+    transition: all linear .6s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register button:active{
+    transform: translateX(5px) translateY(5px) ;
+    letter-spacing: .3em;
+}
+
+.register button:hover{
+    letter-spacing: .3em;
+}
+
+/* Register success */
+
+.register_success{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.register_success_title{
+    color: rgba(0, 0, 0, 0.37);
+    font-size: 18px;
+    letter-spacing: .26em;
+
+    padding-top: 60px;
+    padding-bottom: 15px;
+}
+
+.register_success a{
+    padding-top: 40px;
+}
