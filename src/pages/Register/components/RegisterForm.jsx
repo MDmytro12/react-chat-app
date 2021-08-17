@@ -46,7 +46,6 @@ const RegisterForm = ({loader , setLoader , register , setContent}) => {
             }
             setLoader(false)
         }catch(e){
-            console.log(e)
             setLoader(false)
             setErrors({
                 ...errors ,

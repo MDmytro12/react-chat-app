@@ -1,0 +1,1 @@
+export const APP_SET_AUTH = 'APP_SET_AUTH';

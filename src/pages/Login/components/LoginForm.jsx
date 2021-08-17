@@ -8,7 +8,10 @@ import validator from '../../../utils/validation.utils';
 
 import Loader from 'react-loader-spinner';
 
-const LoginForm = () => {
+import {connect} from 'react-redux'
+import { setAuth } from '../../../redux/actions/auth';
+
+const LoginForm = ({dispatch}) => {
 
     const history = useHistory();
 
@@ -60,6 +63,7 @@ const LoginForm = () => {
             if(response.status === 200){
                 const userData = await response.json()
                 window.localStorage.setItem('currentUser' , JSON.stringify(userData))
+                dispatch(setAuth(true))
                 history.push('/acc')
             }
             
@@ -111,4 +115,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm;
+export default connect()(LoginForm);
