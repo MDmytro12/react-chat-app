@@ -1,4 +1,4 @@
-import React from 'react' 
+import React , { useEffect } from 'react' 
 import PropTypes from 'prop-types'
 
 import { Message } from './'
@@ -6,15 +6,14 @@ import { Message } from './'
 import {AiOutlineComment} from 'react-icons/ai'
 import classNames from 'classnames'
 
-const DialogMain = ({messages}) => {
-
+const DialogMain = ({messages , partnerName}) => {
     return(
         <>
             <div className="dialog_dialog">
                 <div className={classNames('dialog_messages' , { 'dialogs_messages--empty' :  !messages.length  })}>
                     {
-                        messages.length != 0 &&
-                        messages.map( ( item , index ) => <Message key={index} messagE={item} /> )
+                        messages.length !== 0 &&
+                        messages.map( ( item , index ) => <Message partnerName={partnerName} key={index} message={item} /> )
                     } 
                     {
                         messages.length === 0 &&

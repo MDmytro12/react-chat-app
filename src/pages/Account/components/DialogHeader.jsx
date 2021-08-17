@@ -3,7 +3,7 @@ import { colorFilter } from '../../../utils/color.utils';
 
 const DialogHeader = () => {
 
-    const {name} = JSON.parse( localStorage.getItem( 'currentUser' ) )
+    const {name} = JSON.parse( localStorage.getItem( 'currentUser' ) ) || {name : 'undefine'}
 
     return(
         <>

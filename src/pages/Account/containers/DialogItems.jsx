@@ -2,10 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import {DialogItem , NoDialogsItems} from '../components'
-import { useEffect } from 'react'
 
 const  DialogItems = ({dialogItemsList , onDialogItemClick}) => {
-    
+
     return(  
         <>  
             <div className="dialogs_items">

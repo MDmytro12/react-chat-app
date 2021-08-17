@@ -2,23 +2,13 @@ import React , {useState , useEffect} from 'react'
 import {Switch , Route} from 'react-router-dom'
 import {LoginPage , RegisterPage , NoMatchPage , AccountPage} from './pages'
 
-import socketClientIO from 'socket.io-client'
 import {connect} from 'react-redux'
 import { setAuth } from './redux/actions/auth'
 
-const ENDPOINT = 'http://localhost:4000'
 
 const App = ({dispatch , auth}) => {
 
-    // const [res , setRes] = useState(false)
-    // useEffect(() => {
-    //     const socket = socketClientIO(ENDPOINT)
-
-    //     socket.on('true' , () => {
-    //         console.log('Connect!') 
-    //     })
-
-    // } , [] )
+  
 
     useEffect(() => {
         const assecc = window.localStorage.getItem('currentUser')

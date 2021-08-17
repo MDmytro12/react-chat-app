@@ -12,6 +12,7 @@ import { useHistory } from 'react-router'
 
 import {connect} from 'react-redux'
 import { setAuth } from '../../redux/actions/auth'
+import { BiMessageSquareX } from 'react-icons/bi'
 
 const AccountPage = ({dispatch}) => {
 
@@ -36,19 +37,22 @@ const AccountPage = ({dispatch}) => {
 
                     const response = await fetch( 'http://localhost:4000/acc/getun' , { method : "POST" , headers : { "Content-Type" : "application/json" } , body : JSON.stringify({email : authorEmail})  } ).
                                then( res => res.json() )
-
                     return{
                         ...item ,
                         name : response.name , 
-                        active : false
+                        active : false , 
+                        online : response.online
                     }
                 } ) )
             
                 setDialogItemList(dialogs)
                 setSerchList(dialogs)
 
-                dialogs[0].active = true
-                setCurrentDialog(dialogs[0])
+                if(dialogs.length !== 0){
+                    dialogs[0].active = true
+                    setCurrentDialog(dialogs[0])
+                }
+                
             }catch (e){
                 onExitHandler()
             }
@@ -58,7 +62,9 @@ const AccountPage = ({dispatch}) => {
     } , [])
 
 
-    const onExitHandler = () => {
+    const onExitHandler = async () => {
+        await fetch('http://localhost:4000/acc/exit' , {method:"POST" , headers: {"Content-Type" : "application/json"} , body : JSON.stringify( {email : JSON.parse(localStorage.getItem('currentUser') ).email})})
+            
         window.localStorage.removeItem('currentUser')
         history.push('/login')
         dispatch(setAuth(false))
@@ -92,7 +98,7 @@ const AccountPage = ({dispatch}) => {
                 <ImExit className='icon_exit' onClick={onExitHandler} />
                 
                 {
-                    loader && 
+                    loader  && 
                     <div className="loader_div">
                         <Loader 
                             type="Oval"

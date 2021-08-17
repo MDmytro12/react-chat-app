@@ -9,11 +9,11 @@ import classNames from 'classnames'
 const DialogItem = ({ dialogInfo , onDialogItemClick }) => {
 
     const { message , name } = dialogInfo
-
+  
     return(
         <> 
             <div className={classNames('dialog_item' , { 'active' : dialogInfo.active } )} onClick={ () => onDialogItemClick(dialogInfo.dialogId)} >
-                <div className="dialog_item_avatar ">
+                <div className={classNames('dialog_item_avatar' , { 'active' : dialogInfo.online } )}>
                     <div className="dialog_item_no_avatar active" style={{background : colorFilter(name[0])}}>{name.trim()[0].toUpperCase()}</div> 
                 </div>
                 
